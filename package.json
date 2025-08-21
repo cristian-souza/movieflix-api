@@ -6,13 +6,25 @@
   "scripts": {
     "dev": "npx tsx watch src/server.ts"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cristian-souza/movieflix-api.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/cristian-souza/movieflix-api/issues"
+  },
+  "homepage": "https://github.com/cristian-souza/movieflix-api#readme",
   "devDependencies": {
+    "@eslint/js": "^9.33.0",
     "@types/node": "^24.3.0",
+    "eslint": "^9.33.0",
+    "globals": "^16.3.0",
     "tsx": "^4.20.4",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.40.0"
   }
 }
