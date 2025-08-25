@@ -1,7 +1,5 @@
 import express from "express";
 import { PrismaClient } from "@prisma/client";
-import process = require("process");
-import os = require("os");
 
 const port = 3000;
 const app = express();
@@ -94,6 +92,28 @@ app.delete("/movies/:id", async (req, res) => {
         return res.status(500).send({ message: "Não foi possivel remover o filme" })
     }
     res.status(200).send();
+});
+
+app.get("/movies/:genreName", async (req, res) => {
+    try {
+        const movieFilteredByGenreName = await prisma.movie.findMany({
+            include: {
+                genres: true,
+                languages: true
+            },
+            where: {
+                genres: {
+                    name: {
+                        equals: req.params.genreName,
+                        mode: "insensitive"
+                    }
+                }
+            }
+        });
+        res.status(200).send(movieFilteredByGenreName);
+    } catch (error) {
+        res.status(500).send({ message: "Falha ao filtar fimes por genero" })
+    }
 });
 
 app.listen(port, () => {
