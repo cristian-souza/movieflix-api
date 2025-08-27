@@ -1,10 +1,13 @@
 {
   "name": "movieflix-api",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "API do Movieflix",
+  "main": "dist/server.js",
+  "type": "module",
   "scripts": {
-    "dev": "npx tsx watch src/server.ts"
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
   },
   "repository": {
     "type": "git",
@@ -13,7 +16,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/cristian-souza/movieflix-api/issues"
   },
