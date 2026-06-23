@@ -2,11 +2,23 @@ import "dotenv/config";
 import { PrismaPg } from "@prisma/adapter-pg";
 import express from "express";
 import { createRequire } from "module";
+import fs from "fs";
+import swaggerUi from "swagger-ui-express";
 
 const require = createRequire(import.meta.url);
 const { PrismaClient } = require("./generated/client");
 
+let swaggerDocument;
+try {
+  const swaggerPath = new URL("../swagger.json", import.meta.url);
+  const content = fs.readFileSync(swaggerPath, "utf8");
+  swaggerDocument = JSON.parse(content || "{}");
+} catch (err) {
+  swaggerDocument = {};
+}
+
 const app = express();
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 const port = 3000;
 
 const connectionString = process.env.DATABASE_URL;
